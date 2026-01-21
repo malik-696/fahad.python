@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <title>Spam Shield AI</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Spam Mail Detector</h1>
+        <p>Paste the email content below to analyze for phishing or spam.</p>
+        
+        <form action="/predict" method="POST">
+            <textarea name="message" placeholder="Enter email text here..." required></textarea>
+            <button type="submit">Analyze Message</button>
+        </form>
+
+        {% if prediction is defined %}
+            <div class="result {{ 'spam' if prediction == 1 else 'ham' }}">
+                {{ '⚠️ This looks like SPAM!' if prediction == 1 else '✅ This email is SAFE.' }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
